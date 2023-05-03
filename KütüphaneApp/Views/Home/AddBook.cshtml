@@ -1,0 +1,75 @@
+﻿@model AddBookModel
+<style>
+    .input {
+        margin: 3px;
+    }
+</style>
+<html>
+<body>
+    <h1 class="h3">Create Book</h1>
+    <hr />
+
+    <form asp-controller="Home" asp-action="AddBook" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group row">
+                    <label asp-for="BookName" class="col-sm-2 col-form-label">Kitap Adı</label>
+                    <div class="col-sm-10 input">
+                        <input type="text" class="form-control" asp-for="BookName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="WriterName" class="col-sm-2 col-form-label">Yazar Adı</label>
+                    <div class="col-sm-10 input">
+                        <input type="text" class="form-control" asp-for="WriterName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="ImageUrl" class="col-sm-2 col-form-label">Resim Upload</label>
+                    <div class="col-sm-10 input">
+                        <input type="text" class="form-control" asp-for="ImageUrl" value="">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="TotalPage" class="col-sm-2 col-form-label">Sayfa Sayıysı</label>
+                    <div class="col-sm-10 input">
+                        <input type="text" class="form-control" asp-for="TotalPage" value="">
+                    </div>
+                </div>
+
+                @*<div>
+                <select class="form-select" aria-label="Default select example">
+                <option selected>Kategori Seçin</option>
+                @foreach (var item in Model.Categories)
+                {
+                <option value="@item.Id">@item.CategoryName</option>
+                }
+                </select>
+                </div>*@
+
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2">
+                        <button type="submit" class="btn btn-primary">Save Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div>
+                    <p>Kategori seçimi yapın</p>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="@item.Id" id="flexCheckDefault">
+                            <label class="form-check-label" for="@item.Id">
+                                @item.CategoryName
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿
+<html>
+<style>
+    .navbar {
+        color: #f0f9ff;
+        background-color: #282d32;
+    }
+
+        .navbar ul li a {
+            color: #f0f9ff;
+        }
+</style>
+</html>
+
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">KütüphaneApp</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="BookList">Admin Books</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="CategoryList">Admin Categories</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="CreateBook">Kitap Ekle</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="RoleList">Role List</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Admin" asp-action="UserList">User List</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Cart" asp-action="Index">Cart</a>
+                    </li>
+                    <li class="nav-item mt-3">
+                        <a class="nav-link" asp-area="" asp-controller="Account" asp-action="UserUpdate">@User.Identity.Name</a>
+                    </li>
+                }
+                <li class="nav-item mt-3">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="BookList">Kitap Listesi</a>
+                </li>
+                <li class="nav-item mt-2">
+                    <button class="btn btn-outline-danger">
+                        <a class="nav-link " asp-controller="Account" asp-action="Logout">Logout</a>
+                    </button>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <button class="btn btn-outline-primary mr-2 ">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                    </button>
+                </li>
+
+                <li class="nav-item">
+                    <button class="btn btn-outline-info mr-2">
+                        <a class="nav-link " asp-controller="Account" asp-action="Register">Register</a>
+                    </button>
+                </li>
+            }
+        </ul>
+        <form asp-controller="Home" asp-action="Search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+
+</nav>

@@ -1,0 +1,19 @@
+﻿@model List<Category>
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title" style="color: tomato">
+                Categories
+            </h2>
+        </div>
+
+        <div class="lead list-group-flush">
+            <a class="list-group-item list-group-item-action" asp-controller="Home" asp-action="BookList" asp-route-id="">Tüm Kategoriler</a>
+            @foreach (var item in Model)
+            {
+                <a class="list-group-item list-group-item-action @(ViewBag.SelectedCategory == item.CategoryName?"active":"") " asp-controller="Home" asp-action="BookList" asp-route-category="@item.CategoryName">@item.CategoryName</a>
+            }
+        </div>
+    </div>
+</div>

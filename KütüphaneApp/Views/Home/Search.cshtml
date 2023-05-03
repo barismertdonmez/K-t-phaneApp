@@ -1,0 +1,22 @@
+﻿@model BookViewModel
+
+
+<html>
+<head>
+
+</head>
+
+<body>
+    @if (Model.Books.Count == 0)
+    {
+        @await Html.PartialAsync("_noBook")
+        
+    }
+    else
+    {
+        <div class="row">
+            @await Html.PartialAsync("_book",Model.Books)
+        </div>
+    }
+</body>
+</html>

@@ -1,0 +1,67 @@
+﻿@model UpdateBookModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Book</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <h1 class="h3">Edit Book</h1>
+    <hr />
+    <form asp-controller="Admin" asp-action="BookUpdate" method="post">
+        <div class="row">
+            <div class="col-md-8">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <div class="form-group row">
+                    <label asp-for="BookName" class="col-sm-2 col-form-label">Book Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="BookName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="WriterName" class="col-sm-2 col-form-label">Writer Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="WriterName">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="ImageUrl" class="col-sm-2 col-form-label">ImageUrl</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="ImageUrl">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="TotalPage" class="col-sm-2 col-form-label">Total Page</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" asp-for="TotalPage">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-sm-2 my-3 d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary ">Save Book</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                @foreach (var item in Model.Categories)
+                {
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox"
+                               class="custom-control-input"
+                               name="categoryIds"
+                               value="@item.Id"
+                               id="category_@(item.Id)"
+                        @(Model.SelectedCategories.Any(i => i.Id == item.Id) ? "checked" : "")>
+                        <label class="custom-control-label" for="category_@(item.Id)">@item.CategoryName</label>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>
